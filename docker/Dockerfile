@@ -2,10 +2,10 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-RUN pip install transformers \
-    && pip3 install torch --index-url https://download.pytorch.org/whl/cpu \
-    && pip install sentence-transformers \
-    && pip install Flask
+RUN pip install --proxy http://127.0.0.1:8080 transformers \
+    && pip install --proxy http://127.0.0.1:8080 torch --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --proxy http://127.0.0.1:8080 sentence-transformers \
+    && pip install --proxy http://127.0.0.1:8080 Flask
 
 COPY main.py /app/
 
